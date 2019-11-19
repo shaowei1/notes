@@ -1,0 +1,4 @@
+result = {
+  "type": "string",
+  "default": ""
+}
