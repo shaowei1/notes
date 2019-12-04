@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39288138-7c05-46ab-966c-ad83cc0c77c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/linux/pereference.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/api-gateway.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/image_exif.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/index.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/index.py.bak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/result.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/test-index.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/aliyun/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/requests.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/note.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/note.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/example/Dockerfile-debian" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/example/Dockerfile-develop" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,6 +55,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docker/example" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/python/aliyun" />
     </key>
@@ -132,7 +120,7 @@
       <workItem from="1575134868759" duration="443000" />
       <workItem from="1575297971470" duration="1409000" />
       <workItem from="1575299508409" duration="5678000" />
-      <workItem from="1575360678920" duration="507000" />
+      <workItem from="1575360678920" duration="1747000" />
     </task>
     <servers />
   </component>

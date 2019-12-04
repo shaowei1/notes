@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# venv='/Users/charles/Projects/Infimind/ecpro-billing/venv/bin/activate'
+# source ${venv}
+
+rcfile='/app/pylint.conf'
+check_dir='/app/'
+pylint --rcfile=${rcfile} ${check_dir}

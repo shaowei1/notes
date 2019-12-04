@@ -1,0 +1,14 @@
+#!/bin/bash
+
+message=$1
+if [[ -z ${message} ]]
+then
+    error_hint="错误: 请输入message信息"
+    echo -e "\033[31m${error_hint}\033[0m"
+    exit 2
+fi
+manager="/app/manager.py"
+
+export PYTHONPATH=/app:$PYTHONPATH
+python ${manager} db migrate --message ${message}
+python ${manager} db upgrade

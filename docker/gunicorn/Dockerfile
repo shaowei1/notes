@@ -1,0 +1,19 @@
+#FROM registry-vpc.cn-beijing.aliyuncs.com/ecpro/ecpro-flask-docker
+FROM registry.cn-beijing.aliyuncs.com/ecpro/ecpro-flask-docker
+
+#COPY ./entrypoint.sh /entrypoint.sh
+#RUN chmod +x /entrypoint.sh
+#
+#COPY ./start.sh /start.sh
+#RUN chmod +x /start.sh
+#
+#COPY ./gunicorn_conf.py /gunicorn_conf.py
+
+COPY requirements.txt /requirements.txt
+COPY requirements /requirements
+RUN pip3 install --upgrade pip  --no-cache-dir && \
+    pip3 install --no-cache-dir -r /requirements.txt
+
+COPY ./app /app
+
+

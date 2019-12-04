@@ -1,0 +1,16 @@
+FROM registry.cn-beijing.aliyuncs.com/ecpro/ecpro-python-docker:latest
+
+RUN pip install flask
+
+COPY requirements.txt /requirements.txt
+COPY requirements /requirements
+RUN pip3 install --upgrade pip  --no-cache-dir && \
+    pip3 install --no-cache-dir -r /requirements.txt
+
+COPY ./app /app
+
+WORKDIR /app/
+
+ENV PYTHONPATH=/app
+
+CMD ["python", "cropjob.py"]
