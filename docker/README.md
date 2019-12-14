@@ -1,34 +1,61 @@
+# Build
+## COPY and ADD
+docker client 会把所有文件发送给 docker daemon
 
-# 查询docker data file
-curl http://127.0.0.1:9200/_nodes/stats/fs\?pretty
+COPY 和 ADD 命令具有相同的特点：只复制目录中的内容而不包含目录自身
 
-# install
-docker pull bachue/elasticsearch-ik:6.2.4
+## WORKDIR
+WORKDIR 命令为后续的 RUN、CMD、COPY、ADD 等命令配置工作目录
 
-# start error
-elasticsearch:5.0.0 max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
 
-From this link The vm_max_map_count kernel setting needs to be set to at least 262144 for production use. Depending on your platform:
-Linux
-$ grep vm.max_map_count /etc/sysctl.conf
-vm.max_map_count=262144
+## Copy multistage
+```
+COPY --from=builder /app/dist /usr/share/nginx/html
+```
+其中的 COPY 命令通过指定 --from=0 参数，把前一阶段构建的产物拷贝到了当前的镜像中
+```
+FROM golang:1.7.3
+WORKDIR /go/src/github.com/sparkdevo/href-counter/
+RUN go get -d -v golang.org/x/net/html
+COPY app.go    .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-sysctl -w vm.max_map_count=262144
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=0 /go/src/github.com/sparkdevo/href-counter/app .
+CMD ["./app"]
+```
 
-# Running in Development Mode
-Create user defined network (useful for connecting to other services attached to the same network (e.g. Kibana)):
+## ADD
+解压压缩文件并把它们添加到镜像中
+从 url 拷贝文件到镜像中
 
-$ docker network create somenetwork
-Run Elasticsearch:
+```
+WORKDIR /app
+ADD nickdir.tar.gz .
 
-$ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
+or
 
-# chrommium
-RUN apk -U add chromium udev ttf-freefont
-and
+ADD http://example.com/big.tar.xz /usr/src/things/
+RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things
+RUN make -C /usr/src/things all
 
-pyppeteer.launch(
-            headless=True,
-            executablePath="/usr/bin/chromium-browser",
-            args=['--no-sandbox', '--disable-gpu']
-        )
+or
+
+RUN mkdir -p /usr/src/things \
+    && curl -SL http://example.com/big.tar.xz \
+    | tar -xJC /usr/src/things \
+    && make -C /usr/src/things all
+```
+
+## 加快Dockerfile构建
+```
+其中 myhc.py 文件不经常变化，而 checkmongo.py、checkmysql.py 和 checkredis.py 这三个文件则经常变化，那么我们可这样来设计 Dockerfile 文件：
+
+WORKDIR /app
+COPY myhc.py .
+COPY check* ./
+```
+/app 和 myhc.py 都会使用缓存， 只有check* 才会build
+当文件 size 比较大且文件的数量又比较多，尤其是需要执行安装等操作时使用

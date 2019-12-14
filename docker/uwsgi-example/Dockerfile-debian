@@ -4,6 +4,8 @@ LABEL maintainer="Aaron Xu <aaron.xu.com>"
 
 COPY requirements.txt /requirements.txt
 
+export PYTHONPATH=$PYTHONPATH:/app/lib/tp_api
+
 RUN sed -i 's/deb.debian.org/mirror.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/mirror.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     apt-get update && apt-get install -y apt-utils && \

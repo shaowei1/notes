@@ -24,7 +24,7 @@ stmt = users.update().\
             where(users.c.id==5).\
             values(name='user #5')
 
-    
+
 ```
 
 #### cascade-delete
@@ -74,6 +74,19 @@ sub_files = relationship('File',
 
 ```
 
+#### create session
+```
+mysql-connector           2.2.9
+mysql-connector-python    8.0.14
+mysql-replication         0.19
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+DB_CONNECT_STRING = 'mysql+mysqldb://root:password@localhost:port/test2?charset=utf8mb4'
+engine = create_engine(DB_CONNECT_STRING, echo=True)
+Session = sessionmaker(bind=engine)
+session = Session()
+```
 
 ####安装  
 
@@ -85,7 +98,9 @@ sub_files = relationship('File',
 没有报错就代表正确安装了，连接MySQL数据库(需要MySQLdb支持)：  
 
     from sqlalchemy import create_engine
-    DB_CONNECT_STRING = 'mysql+mysqldb://root:@localhost/test2?charset=utf8'
+    # DB_CONNECT_STRING = 'mysql+mysqlconnector://root:password@localhost:port/test2?charset=utf8mb4'
+
+    DB_CONNECT_STRING = 'mysql+mysqldb://root:password@localhost:port/test2?charset=utf8mb4'
     engine = create_engine(DB_CONNECT_STRING,echo=True)
 create_engine方法返回一个Engine实例，Engine实例只有直到触发数据库事件时才真正去连接数据库，如执行：
 

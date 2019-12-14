@@ -78,3 +78,5 @@ or
 ssserver -c /etc/shadowsocks.json
 
 ssserver -p 8001 -k shaowei -m aes-256-cfb
+
+git commit -a -m 'linux install docker network nginx initial'
