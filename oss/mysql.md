@@ -1,0 +1,13 @@
+
+
+area
+batch_prop
+batch_prop_value
+jingdong_area
+pinduoduo_country
+taobao_area
+washing_symbol
+washing_symbol_collection
+tp_on_report
+tp
+synchronize_category

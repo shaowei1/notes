@@ -30,6 +30,11 @@ b.molibird.com/index.php	 X	            可以	         X	            可以
 无法修改到 具体的子域名 比如 molibird.com 修改到 a.molibird.com
 无法修改到"同级域名" 比如 a.molibird.com 修改到 b.molibird.com 是不行的
 
+## problem
+业务: 第三方拼台携带令牌回调我的api接口(api.molibird.com),
+我存储临牌并且生成account, 并将请求重定向到我方登录页面(console.molibird.com),
+存在跨域设置cookies的问题
+
 ## example
 
 ```python

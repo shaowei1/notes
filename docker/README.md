@@ -59,3 +59,18 @@ COPY check* ./
 ```
 /app 和 myhc.py 都会使用缓存， 只有check* 才会build
 当文件 size 比较大且文件的数量又比较多，尤其是需要执行安装等操作时使用
+
+##
+```
+exec "$@"
+```
+It basically takes all the extra command line arguments and execs them as a command. The intention is basically "Do everything in this .sh script, then in the same shell run the command the user passes in on the command line".
+exec 是 bash 的内置命令
+
+shell 的内件命令exec执行命令时，不启用新的shell进程。
+
+source 和 . 不启用新的shell，在当前shell中执行，设定的局部变量在执行完命令后仍然有效。
+
+bash 或 sh 或 shell script 执行时，另起一个子shell，其继承父shell的环境变量，其子shelll的变量执行完后不影响父shell。
+
+exec是用被执行的命令行替换掉当前的shell进程，且exec命令后的其他命令将不再执行。

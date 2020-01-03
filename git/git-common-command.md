@@ -16,36 +16,83 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 
 下面的命令结合上面两张图来理解、练习、记忆效果更加。暂时用不着的命令记不住，不理解也没关系，哪天遇到问题，再来找找有没有合适的方法也不迟。
 
+#### tags
+- List local branches. The current branch is highlighted by `*`:
+    git branch
+
+- List all branches (local and remote):
+    git branch -a
+
+- Show the name of the current branch:
+    git branch --show-current
+
+- Create new branch based on the current commit:
+    git branch branch_name
+
+- Create new branch based on a specific commit:
+    git branch branch_name commit_hash
+
+- Rename a branch (must not have it checked out to do this):
+    git branch -m old_branch_name new_branch_name
+
+- Delete a local branch (must not have it checked out to do this):
+    git branch -d branch_name
+
+#### branch
+- 删除远程 branch
+git push origin --delete old_branch_name
+
+- List local branches. The current branch is highlighted by `*`:
+    git branch
+
+- List all branches (local and remote):
+    git branch -a
+
+- Show the name of the current branch:
+    git branch --show-current
+
+- Create new branch based on the current commit:
+    git branch branch_name
+
+- Create new branch based on a specific commit:
+    git branch branch_name commit_hash
+
+- Rename a branch (must not have it checked out to do this):
+    git branch -m old_branch_name new_branch_name
+
+- Delete a local branch (must not have it checked out to do this):
+    git branch -d branch_name
+
 ####新建/克隆代码库
 
-	
+
 	$ git init                                          #当前目录新建一个Git代码库
-	
+
 	$ git init [project-name]						     #新建一个目录，将其初始化为Git代码库
-	
+
 	$ git clone [url]								     #下载一个项目和它的整个代码历史
 
 	$ git fetch [url]									 #下载/同步项目到
 
 ####添加/删除文件
-	
-	
+
+
 	$ git add [file1] [file2] ...   					# 添加指定文件到暂存区
-	
+
 	$ git add [dir] 									# 添加指定目录到暂存区，包括子目录
 
 	$ git add .   										# 添加当前目录的所有文件到暂存区
 
 	$ git rm [file1] [file2] ...   					# 删除工作区文件，并且将这次删除放入暂存区
-	
+
 	$ git rm --cached [file]   						# 停止追踪指定文件，但该文件会保留在工作区
-	
+
 	$ git mv [file-original] [file-renamed]  			# 改名文件，并且将这个改名放入暂存区
 
 ####代码提交
-	
+
 	$ git commit -m [message]  						# 提交暂存区所有文件到仓库区，并指定提交说明
-	
+
 	$ git commit [file1] [file2] ... -m [message]   	# 提交暂存区的指定文件到仓库区，并指定提交说明
 
 	$ git commit -a   # 提交工作区自上次commit之后的变化，直接到仓库区。是git add 和 git commit的组合操作
@@ -56,7 +103,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 
 
 ####分支
-	
+
 	$ git branch   									# 列出所有本地分支
 
 	$ git branch -r									# 列出所有远程分支
@@ -68,7 +115,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git checkout -b [branch]  						# 新建一个分支，并切换到该分支
 
 	$ git branch [branch] [commit]  					# 新建一个分支，指向指定commit
-	
+
 	$ git checkout [branch-name]  						# 切换到指定分支
 
 	$ git merge [branch]  								# 合并指定分支到当前分支
@@ -79,21 +126,21 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git branch -dr [remote/branch]          			# 方法二：删除远程分支
 
 ####撤销
-	
+
 	$ git checkout [file]   							# 恢复暂存区的指定文件到工作区（注意区别分支操作中得checkout命令）
 
 	$ git checkout [commit] [file]  					# 恢复某个commit的指定文件到暂存区和工作区
 
 	$ git checkout .   								# 恢复暂存区的所有文件到工作区
-	
+
 	$ git reset [file]  								# 重置暂存区的指定文件，与最新的commit保持一致，但工作区不变
-	
+
 	$ git reset --hard    								# 重置暂存区与工作区，与最新的commit保持一致
 
 	$ git reset [commit]   							# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
-	
+
 	$ git reset --hard [commit]  						# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
-	
+
 	$ git reset --keep [commit]   						# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
 
 	$ git revert [commit]  							# 新建一个commit，用来撤销指定commit
@@ -101,13 +148,13 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 ####标签
 
 	$ git tag  										# 列出所有tag
-	
+
 	$ git tag [tag] 									# 在当前commit新建一个tag
 
 	$ git tag [tag] [commit] 							# 在指定commit新建一个tag
 
 	$ git tag -d [tag]   								# 删除本地tag
-	
+
 	$ git push origin :refs/tags/[tagName]  			# 删除远程tag
 
 	$ git show [tag]  									# 查看tag信息
@@ -118,7 +165,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 
 	$ git checkout -b [branch] [tag]   				# 新建一个分支，指向某个tag
 ####查看日志
-	
+
 	$ git status 									# 显示所有变更文件
 
 	$ git log  										# 显示当前分支的版本历史
@@ -128,7 +175,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git blame [file]								# 显示指定文件是什么人在什么时间修改过
 
 	$ git log -p [file]								# 显示指定文件相关的每一次diff
-	 
+
 	$ git diff     									# 显示暂存区和工作区的差异
 
 	$ git diff --cached [commit]					# 显示暂存区和某个commit的差异
@@ -140,7 +187,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git show --name-only [commit]					# 显示某次提交发生变化的文件
 
 	$ git show [commit]:[filename]					# 显示某次提交时，某个文件的内容
-	
+
 	$ git reflog									# 显示当前分支的最近几次提交
 
 ####远程同步
@@ -148,7 +195,7 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git fetch [remote]							# 下载远程仓库的所有变动到暂存区
 
 	$ git remote -v 								# 显示所有远程仓库
-	
+
 	$ git remote show [remote]						# 显示某个远程仓库的信息
 
 	$ git remote add [shortname] [url]				# 增加一个新的远程仓库，并命名
@@ -156,18 +203,17 @@ Git已经成为程序员日常工具之一，那些Git基本的命令，每天�
 	$ git pull [remote] [branch]					# 取回远程仓库的变化，并与本地分支合并
 
 	$ git push [remote] [branch]					# 上传本地指定分支到远程仓库
-	
+
 	$ git push [remote] --force						# 即使有冲突，强行推送当前分支到远程仓库
-	
+
 	$ git push [remote] --all						# 推送所有分支到远程仓库
 ####设置
 git的配置文件是.gitconfig，支持全局配置和项目配置，全部配置对所有项目有效，用 `--global`选择指定。
-	
-	$ git config --list                                  #显示配置
-	
-	$ git config -e [--global]  						 #编辑(全局)配置文件
-	
-	$ git config [--global] user.name "xx"               #设置 commit 的用户
-	
-	$ git config [--global] user.email "xx@xx.com"       #设置 commit 的邮箱
 
+	$ git config --list                                  #显示配置
+
+	$ git config -e [--global]  						 #编辑(全局)配置文件
+
+	$ git config [--global] user.name "xx"               #设置 commit 的用户
+
+	$ git config [--global] user.email "xx@xx.com"       #设置 commit 的邮箱

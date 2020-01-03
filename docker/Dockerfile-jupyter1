@@ -1,0 +1,14 @@
+FROM python:3.8.1
+RUN pip3 install --upgrade pip  --no-cache-dir -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com && \
+    pip3 install --no-cache-dir -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com notebook
+
+ENV TINI_VERSION v0.6.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
+EXPOSE 8888
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root", "/root/notebook"]
+#docker build -t notebook -f Dockerfile .
+#docker run -t -i -v /root/notebook/:/root/notebook -p 8888:8888 --name notebook notebook:latest
+#f45b45ce60cc6cd84409dbad301b7d2dc3982a7831781d93
