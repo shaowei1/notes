@@ -1,13 +1,13 @@
 可能不常用到的Git命令
 ==================
- 
+
 ####统计代码行数
 
     git ls-files | xargs wc -l
 ####统计python代码行数
 
     git ls-files | grep .py | xargs wc -l
-        
+
 ####更新fork项目:
 如果你fork了别人的项目，过段时间突然发现该项目更新了很多内容，于是你想同步更新到自己的仓库中，可以按如下步骤：  
     
@@ -21,9 +21,9 @@
             
             git checkout master
             git merge upstream/master
-            
+
 ####删除远程分支
-    
+
     git push origin --delete branch-a   # 删除远程分支branch-a
 如果远程分支已经删除,但是本地还存在诸如:remotes/origin/[branch]这样的分支时，可能会引起错误:
 
@@ -48,32 +48,32 @@ error: failed to push some refs to 'git@bitbucket.org:sponialtd/openplay_pylibs.
 停止追踪文件，但不会删除，也就是说只从暂存区移除。
 
 ####删除一次commit
-    
+
 由于某些原因导致误操作增加了一次commit，现在想删除它，怎么办？
         
     git log
-
+    
     commit 663019f323084a7ebdab0aa96223272816d64322
     Author: liuzhijun <lzjun567@gmail.com>
     Date:   Thu Aug 27 12:25:12 2015 +0800
-
+    
         Remove TODO
-
+    
     commit 0d6aa254961945372d3108ab053b51426194cbaf
     Author: liuzhijun <lzjun567@gmail.com>
     Date:   Thu Aug 27 12:22:59 2015 +0800
-
+    
         Remove TODO
 我要删除6630这个commit
 
     git reset --hard [commit]
     git push origin  HEAD --force
-        
+
 
 git push 到远程分支的时候报莫名其妙的错误：
 
     git push origin feature/3.1
-
+    
     Counting objects: 8, done.
     Delta compression using up to 4 threads.
     Compressing objects: 100% (7/7), done.
@@ -92,7 +92,31 @@ git push 到远程分支的时候报莫名其妙的错误：
     $ git remote -v
     origin  git@git.oschina.net:liuzhijun/xxx.git (fetch)
     origin  git@git.oschina.net:liuzhijun/xxx.git (push)
-
+    
     $ git remote rm origin
-
+    
     $ git remote add origin  git@git.oschina.net:liuzhijun/xxx.git
+
+# Github
+
+### …or create a new repository on the command line
+
+
+
+```
+echo "# design-patterns" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:shaowei1/design-patterns.git
+git push -u origin master
+```
+
+### …or push an existing repository from the command line
+
+
+
+```
+git remote add origin git@github.com:shaowei1/design-patterns.git
+git push -u origin master
+```
