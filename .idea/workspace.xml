@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39288138-7c05-46ab-966c-ad83cc0c77c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docker/example/Dockerfile-debian" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/example/Dockerfile-develop" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="39288138-7c05-46ab-966c-ad83cc0c77c8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +117,7 @@
       <workItem from="1575297971470" duration="1409000" />
       <workItem from="1575299508409" duration="5678000" />
       <workItem from="1575360678920" duration="1747000" />
+      <workItem from="1578116426596" duration="43000" />
     </task>
     <servers />
   </component>

@@ -16,10 +16,21 @@ function dlogs() {
 
 function drestart() {
 	docker restart "$1"
+	docker logs -f "$1" --tail 100
+}
+
+function dbuild() {
+       docker rm "$1" -f
+       docker build -t "$1" -f /root/"$1"/Dockerfile-debug /root/"$1"
+       docker run  -t -i --env-file /root/"$1"/.env.example -v /root/"$1"/app/:/app -p "$2":80 --name "$1" --network some-network "$1":latest
 }
 
 function dexec() {
 	docker exec -it "$1"  /bin/bash
+}
+
+function drm() {
+	docker rm "$1" -f
 }
 
 ZSH_THEME="robbyrussell"
