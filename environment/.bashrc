@@ -59,3 +59,8 @@ function rm () {
     fi
   done
 }
+
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
+source /usr/local/bin/virtualenvwrapper.sh

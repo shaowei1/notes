@@ -5,10 +5,10 @@
 ## 安装 Docker 时，它会自动创建 3 个网络
 
 ```
-$ docker network ls 
-NETWORK ID          NAME                DRIVER 
-7fca4eb8c647        bridge              bridge 
-9f904ee27bf5        none                null 
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+7fca4eb8c647        bridge              bridge
+9f904ee27bf5        none                null
 cf03ee007fb4        host                host
 ```
 
@@ -72,7 +72,7 @@ cf03ee007fb4        host                host
 ### 创建时显示指定提及
 
 ```bash
-docker run -itd --name=test1 --net=test-network ppc64le/busybox /bin/sh 
+docker run -itd --name=test1 --net=test-network ppc64le/busybox /bin/sh
 docker network inspect some-network
 ```
 
@@ -83,3 +83,31 @@ docker run -itd --name=test2 ppc64le/busybox /bin/sh
 docker network connect test-network test2
 ```
 
+## communication  between multiple docker-compose projects
+You just need to make sure that the containers you want to talk to each other are on the same network. Networks are a first-class docker construct, and not specific to compose.
+
+- front/docker-compose.yml
+version: '2'
+services:
+  front:
+    ...
+    networks:
+      - some-net
+networks:
+  some-net:
+    driver: bridge
+...
+
+- api/docker-compose.yml
+version: '2'
+services:
+  api:
+    ...
+    networks:
+      - front_some-net
+networks:
+  front_some-net:
+    external: true
+Note: Your app’s network is given a name based on the “project name”, which is based on the name of the directory it lives in, in this case a prefix front_ was added
+
+They can then talk to each other using the service name. From front you can do ping api and vice versa.

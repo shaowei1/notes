@@ -1,4 +1,19 @@
 # Build
+
+## 使用阿里云镜像加速
+```
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://v1ikicsy.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+sudo docker login --username=shaowei@1376573201505901 registry.cn-hangzhou.aliyuncs.com
+shao******
+
 ## COPY and ADD
 docker client 会把所有文件发送给 docker daemon
 
