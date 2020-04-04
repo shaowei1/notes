@@ -28,3 +28,19 @@ mysqldump -uroot -proot --databases db1 --tables a1 a2  >/tmp/db1.sql
 -- where
 mysqldump -uroot -proot --databases db1 --tables a1 --where='id=1'  >/tmp/a1.sql
 ```
+
+# redis
+
+brew install redis
+brew ls redis
+
+brew services start redis
+
+redis-server /usr/local/etc/redis.conf
+
+redis-cli
+
+# telnet
+ brew install telnet
+
+ telnet 127.0.0.1 6907

@@ -1,4 +1,9 @@
-
+SRX-DGNMZ-3C
+# add exec file
+```
+<!-- .bashrc -->
+export PATH=${PATH}:/Users/root1/Downloads/command
+可执行文件放在command 目录下
 ```
 easy_install brew
 
@@ -16,7 +21,12 @@ brew install zsh
 sh -c "$(curl -fsSL
 https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
+# brew
+```
+cd "$(brew --repo)" && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
 
+cd $home && brew update
+```
 
 
 # mac install

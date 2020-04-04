@@ -1,4 +1,3 @@
-
 # show branch graph
 git log --graph --pretty=oneline --abbrev-commit
 

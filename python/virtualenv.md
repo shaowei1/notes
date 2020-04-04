@@ -3,6 +3,10 @@ Python虚拟环境
 动态语言中Ruby、Python都有自己的虚拟环境，通过创建虚拟环境能够使不同的项目之间的运行环境保持独立性而相互不受影响。例如项目A依赖Django1.4，而项目B依赖Django1.5，这时它就能解决此类问题。Ruby有Vagrant，Python有virtualenv，本文讨论Python虚拟环境。[virtualenv](https://docs.python.org/zh-cn/3/tutorial/venv.html)可用于创建独立的Python环境，它会创建一个包含项目所必须要的执行文件。
 
 #### install python3.7
+##### 误删虚拟环境
+find ~/.virtualenvs/my-virtual-env/ -type l -delete
+virtualenv ~/.virtualenvs/my-virtual-env
+
 ##### openssl
 wget http://www.openssl.org/source/openssl-1.1.1.tar.gz
 tar -zxvf openssl-1.1.1.tar.gz
