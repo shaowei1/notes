@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "my-stateful-app" #TODO: repliace it with your app name
+spec:
+  serviceName: "my-service"
+  replicas: 2
+  template:
+    metadata:
+      name: "my-stateful-app"
+      labels:
+        app: my-stateful-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9 #TODO: replace it with your exactly <image_name:tags>
+        ports:
+        - containerPort: 80
+        livenessProbe:
+    #          exec:
+    #            command:
+    #            - sh
+    #            - -c
+    #            - "mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}"
+    #
+    #          tcpSocket:
+    #            port: 8080
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+    #          exec:
+    #            command:
+    #            - sh
+    #            - -c
+    #            - "mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}"
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 5
+        # specify user/password from existing secret
+        env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: test-secret
+                key: username
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: test-secret
+                key: password
+          # Define the environment variable for configmap
+          - name: SPECIAL_LEVEL_KEY
+            valueFrom:
+              configMapKeyRef:
+                # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: aliyun-config
+                # Specify the key associated with the value
+                key: special.env
+        # configMap volume
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+          - name: datadir
+            mountPath: /usr/share/nginx/html
+      volumes:
+        - name: config-volume
+          configMap:
+            name: aliyun-config
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes:
+        - "ReadWriteMany"
+      resources:
+        requests:
+          storage: "1Gi"

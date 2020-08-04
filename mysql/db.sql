@@ -31,3 +31,26 @@ SET a.width = b.width,
 		a.height = b.height;
 -- SET width = if(start_dts > end_dts, 'VALID', '')
 -- where clause can go here
+
+-- 查询json
+-- SELECT json_extract(字段名,'$.json结构') FROM 表名;
+-- 如果json里有双引号，那这样取出来的数据也带双引号，要去掉就使用REPLACE函数
+-- ps_push_data表里的push_data字段存的数据为：{"carRenewalInfoVo":{"licence":"浙AF55Z0"},"code":"1","msg":"成功"}
+SELECT REPLACE(json_extract(push_data,'$.carRenewalInfoVo.licence'),'"','') FROM ps_push_data;
+-- SELECT * FROM table WHERE JSON_EXTRACT(request_content, "$.Content") = '1'
+-- 说明：JSON_EXTRACT(列名,"$.json某个属性")
+
+SELECT * FROM devices WHERE json_extract(json_extract(json_extract(json_data,"$.lastOperation"),"$.target"),"$.name") = '西门门岗闸机01'
+
+
+-- 先分组 再排序
+SELECT a.* from product_publishing a
+            left JOIN product_publishing b
+            on a.product_id = b.product_id and a.created_at < b.created_at
+WHERE b.created_at is null;
+
+-- 更新 from select
+UPDATE product as p , (SELECT a.* from product_publishing a
+            left JOIN product_publishing b
+            on a.product_id = b.product_id and a.created_at < b.created_at
+WHERE b.created_at is null) as k set p.latest_publish_status = k.`status` WHERE p.id = k.product_id;

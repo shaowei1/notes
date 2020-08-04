@@ -15,6 +15,11 @@ https://medium.com/@Clovis_app/configuration-of-a-beautiful-efficient-terminal-a
 
 brew cask install iterm2
 
+preference --> profiles --> keys -->
+
+  option+<- action: send Escape Sequence  Esc + b
+  option+-> action: send Escape Sequence  Esc + f
+
 # zsh
 brew install zsh
 

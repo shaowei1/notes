@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: hello-pod
+  name: hello-pod
+spec:
+#  serviceAccountName: user1  # specify specific sevice account for pod creation
+#    automountServiceAccountToken: true # mount token for api access inside pod/container
+#  imagePullSecrets:          #Comment out to enable specific image pull secret
+#    - name: myregistrykey    # repleace it to specific registry key
+  containers:
+    - image: nginx
+      imagePullPolicy: IfNotPresent
+      name: hello-pod
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities: {}
+        privileged: false
+      terminationMessagePath: /dev/termination-log
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+#  nodeSelector:
+#    env: test-team
+status: {}

@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39288138-7c05-46ab-966c-ad83cc0c77c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/python/crawler/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/crawler/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/flask/cors/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/flask/cors/test_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docker/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/network.md" beforeDir="false" afterPath="$PROJECT_DIR$/docker/network.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/api-gateway.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/base.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/exceptions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/image_exif.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/index.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/index.py.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/result.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/test-index.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/aliyun/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/virtualenv.md" beforeDir="false" afterPath="$PROJECT_DIR$/python/virtualenv.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/ConfigMap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/Deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/Namespace.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/Secret.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/StatefuleSet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/basic-Deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/pod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/pod_with_node_selector.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/example/service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git/git-flow.md" beforeDir="false" afterPath="$PROJECT_DIR$/git/git-flow.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mac/tools/software.md" beforeDir="false" afterPath="$PROJECT_DIR$/mac/tools/software.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/celery/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/python/celery/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -212,6 +206,7 @@
       <workItem from="1582178154489" duration="1774000" />
       <workItem from="1582180887692" duration="1056000" />
       <workItem from="1582182874191" duration="362000" />
+      <workItem from="1592894309134" duration="22000" />
     </task>
     <servers />
   </component>

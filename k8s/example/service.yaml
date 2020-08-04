@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service1 #TODO: to specify your service name
+  labels:
+    app: nginx-svc
+spec:
+  selector:
+    app: nginx #TODO: change label selector to match your backend pod
+  ports:
+  - protocol: TCP
+    name: http
+    port: 30080 #TODO: choose an unique port on each node to avoid port conflict
+    targetPort: 80
+  type: NodePort
+#  type: LoadBalancer
