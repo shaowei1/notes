@@ -61,7 +61,7 @@ request_finished定义在文件django.core.signals.py里面：
 
 
 ####小结
-我们需要做的只是编写receiver，然后调用signal.connect方法，相当于把receiver注册到signal上去。当事件触发时，相应的signal就会通知所有注册的receivers得到调用。尼玛，这是传说中的观察者模式。  
+我们需要做的只是编写receiver，然后调用signal.connect方法，相当于把receiver注册到signal上去。当事件触发时，相应的signal就会通知所有注册的receivers得到调用。这是传说中的观察者模式。  
 
 连接receiver函数还有另外一个方法，用装饰器：  
 
@@ -88,6 +88,7 @@ signal还可以指定具体的senders，比如pre_save这个signal是在Model对
     def my_handle(sender, **kwargs):
         pass
 这样每次只有保存MyModel实例后才会发送，其他的XXModel就会忽略掉。  
+
 
 完！
 

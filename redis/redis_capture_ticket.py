@@ -1,7 +1,12 @@
+import sys
+import traceback
+
 import redis
 import threading
 
-hostname = '192.168.15.179'
+from redis import WatchError
+
+hostname = '127.0.0.1'
 
 # 创建连接池
 pool = redis.ConnectionPool(host=f'{hostname}', port=6379)
@@ -15,11 +20,12 @@ KEY = "ticket_count"
 
 # 模拟第 i 个用户进行抢票
 def sell(i):
-    # 初始化 pipe
-    pipe = r.pipeline()
+    # 初始化 pipe, 默认transaction 是开启的
+    pipe = r.pipeline(transaction=True)
     while True:
         try:
             # 监视票数
+            # watch库存键, multi后如果该key被其他客户端改变, 事务操作会抛出WatchError异常
             pipe.watch(KEY)
             # 查看票数
             c = int(pipe.get(KEY))
@@ -34,8 +40,11 @@ def sell(i):
             else:
                 print('用户 {} 抢票失败，票卖完了'.format(i))
                 break
-        except Exception as e:
-            # print(e)  # Watched variable changed
+        except WatchError as e:
+            print({"error_args": str(e.args),
+                   "error_info": str(sys.exc_info()[0]),
+                   "error_point": str(traceback.format_exc())
+                   })  # Watched variable changed
             print('用户 {} 抢票失败，重试一次'.format(i))
             continue
         finally:

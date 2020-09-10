@@ -1,6 +1,9 @@
 RQ----Workers
 =============
 worker就是一个Python进程，运行在后台用于执行那些费时的、阻塞的任务。因为这些任务并没有必要把他放在web应用中处理，比如用户注册时发送邮件验证其有效性的操作。  
+
+![](./imgs/rq_worker.png)
+
 ###启动worker
 启动worker进程非常简单，只需从工程根目录下运行命令：  
 
@@ -13,7 +16,7 @@ Worker会从指定的队列中读取jobs（任务），读取顺序是按照其�
 
 ###Burst 启动模式
 默认情况下，workers启动后立马开始工作，直到所有任务完成时开始阻塞等待新的任务进来，不过workers还可以以一种叫`burst`的模式启动，这种方式启动时，workers完成所有任务后，一旦返现队列没有任务了，那么该进程就退出。  
-这种使用场景一般用于临时性处理一些任务，或者业务高分期临时扩展业务来处理一下这些任务。  
+这种使用场景一般用于临时性处理一些任务，或者业务高峰期临时扩展业务来处理一下这些任务。  
 
 ###深入worker
 ####worker的生命周期
@@ -42,7 +45,7 @@ worker的生命周期由如下几个步骤构成：
     import library_that_you_want_prelaoded
 
     #提供队列名字准备去监听
-    # 类似与 rqworker
+    # 类似于 rqworker
     with Connection():
         qs = map(Queue, sys.argv[1:]) or [Queue()]
         w = Worker(qs)

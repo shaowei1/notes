@@ -84,8 +84,21 @@ Redis是远程字典服务器，字典的值所支持的数据类型：
 有序集合的每个元素都有一个分数，它不仅有插入、删除、是否存在元素的操作外，还支持获取得分最高或最低的前N个元素、获取指定分数范围内的元素。
 
 
+#### EXPIRE
+redis> SET cache_page "www.google.com"
+OK
 
+redis> EXPIRE cache_page 30  # 设置过期时间为 30 秒
+(integer) 1
 
+redis> TTL cache_page    # 查看剩余生存时间
+(integer) 23
+
+redis> EXPIRE cache_page 30000   # 更新过期时间
+(integer) 1
+
+redis> TTL cache_page
+(integer) 29996
 
 
 

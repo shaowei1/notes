@@ -2,7 +2,13 @@ Redis“发布/订阅”模式
 ====================
 发布订阅者模式可以实现进程之间的消息传递，该模式包含两个角色，分别为“发布者”和“订阅者”。订阅者可以订阅一个或多个频道（channel），发布者可以向指定的频道（channel）发送消息。订阅了此频道的订阅者都会收到该消息。  
 
-publish：发布者发布消息的命令，语法：publish channel message。例如：像频道channel1发送消息“hi”    
+### 下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：
+![](./img/SUBSCRIBE.png)
+### 当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：
+![](./img/publish-channel.png)
+
+publish：发布者发布消息的命令，语法：publish channel message。例如：像频道channel1发送消息“hi”   
+在同一个频道 chanel1.1 发布两次消息，订阅者就能接收到消息 
 
     127.0.0.1:6379> publish chanel1.1 hi
     (integer) 0

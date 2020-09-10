@@ -17,14 +17,14 @@ PEP8建议按如下三种方式分组导入包
     #标准库
     from math import sqrt
     from os.path import abspath
-    
+
     #Django导入
     from django.db import models
     from django.utils.translation import ugettext_lazy as _
-    
+
     #第三方应用导入
     from django_extensions.db.models import TimeStampedModel
-    
+
     #导入自己的应用
     from splits.models import BananaSplit
 
@@ -42,7 +42,7 @@ PEP8建议按如下三种方式分组导入包
     from cones.forms import WaffleConeForm
     class WaffleConeCreateView(CreateView):
         model = WaffleCone
-        form_class = WaffleConeForm 
+        form_class = WaffleConeForm
 
 * 现在假如你想在其他project重用这个cones app，但是刚好这个project中已经有一个叫cones 的app了，这样就会造成名字的冲突。  
 * 如果想像把cones改名，你又得在多次更改cones。  
@@ -56,7 +56,7 @@ PEP8建议按如下三种方式分组导入包
     from .forms import WaffleConeForm
     class WaffleConeCreateView(CreateView):
         model = WaffleCone
-        form_class = WaffleConeForm 
+        form_class = WaffleConeForm
 
 
 ####避免使用 import  *
@@ -95,7 +95,7 @@ Git 和 Mercurial 是 Django开发中最流行的版本控制工具，它不仅�
 
 ####Django项目代码布局
 运行：  
-
+    $ python -m django --version
     $ django-admin.py startproject mysite
     $ cd mysite
     $ django-admin.py startapp my_app

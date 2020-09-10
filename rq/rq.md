@@ -8,35 +8,37 @@ RQ（Rdis Queue）
 
     import requests
 
-    def count_words_at_url(uri):
+    def count_words_at_url(url):
         resp = requests.get(url)
         return len(resp.text.split())
 
 注意到没有？这个函数没有任何特别的地方，任何可被调用的Python函数都可以放入到RQ队列中。接下来把这个耗时的统计操作放到后台去做，可以简单的这样做：  
     
     #rqtest.py
-
+    
+    import time
     from rq import Queue
     from redis import Redis
     from somewhere import count_words_at_url
-
-    #告诉RQ连接哪个Redis
-    redis_conn = Redis() # 默认连接localhost:8986
-    q = Queue(connection = redis_conn)  #默认队列没有使用其他参数
     
-    #延迟执行count_words_at_url函数
-    job =  q.enqueue(count_words_at_url, “http://foofish.net”)
-
-    print job.result  # => None
-        
+    # 告诉RQ连接哪个Redis
+    redis_conn = Redis()  # 默认连接localhost:6319
+    q = Queue(connection=redis_conn)  # 默认队列没有使用其他参数
+    
+    # 延迟执行count_words_at_url函数
+    job = q.enqueue(count_words_at_url, "https://www.baidu.com/")
+    
+    print(job.result)  # => None
+    
     # 现在，等待一会儿，直到worker完成
     time.sleep(2)
-    print job.result
+    print(job.result)
+
 
 **注意**：这里的`somewhere`是该统计任务的模块名称，不要把上面这段代码放在同一个模块中，`__main__`模块中的函数（任务）不能被worker（后台进程）处理。否者会报错：  
 >>Functions from the __main__ module cannot be processed by workers.
 
-在somewhere.py所在目录运行命令“rqworker”可以看到队列处理任务的过程：  
+在somewhere.py所在目录运行命令“rqworker queue_name1 queue_name2”可以看到队列处理任务的过程：  
     
     18:37:43 RQ worker started, version 0.4.6
     18:37:43

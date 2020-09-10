@@ -1,12 +1,11 @@
 import uuid
 import time
-from datetime import datetime
+import datetime
 from binascii import crc32
 from typing import Iterable
 from marshmallow import fields
 import pytz
 from werkzeug.datastructures import ImmutableMultiDict
-from engine.configs import PRODUCE
 
 
 class TimeCased(fields.Field):
@@ -63,14 +62,6 @@ def delete_empty_data(data):
             )
         )
     )
-
-
-def start_celery_task(task, **kwargs):
-    if PRODUCE is None:
-        task(**kwargs)
-    else:
-        task.delay(**kwargs)
-    pass
 
 
 def string_to_list(ids: str):
