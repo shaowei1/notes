@@ -1,6 +1,7 @@
 import time
 import types
 from functools import wraps
+import celery
 
 
 class Subscribe:
@@ -43,5 +44,6 @@ def countdown(n):
         n -= 1
 
 
-a = countdown
-pass
+@celery.task(queue='queue_name')
+def add(a, b):
+    return a + b

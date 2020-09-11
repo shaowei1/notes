@@ -177,5 +177,5 @@ class UserController:
 if __name__ == '__main__':
     user_controller = UserController()
     user_controller.set_reg_observers([RegPromotionObserver, RegNotificationObserver])
-    user_controller.register('18342910538', 'yang')
+    user_controller.register('18342910538', 'cdd2083')
     print('main')
