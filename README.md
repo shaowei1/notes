@@ -47,3 +47,4 @@
 1. [RQ简介](./note/rq/rq_getting_start.md)
 2. [RQ Queue](./note/rq/rq.md)
 3. [RQ Worker](./note/rq/rq_worker.md)
+3. [RQ exchange](./note/rq/exchange.md)
