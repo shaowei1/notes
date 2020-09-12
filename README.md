@@ -40,30 +40,6 @@
 5. [范行实践](./note/java/Generic.md)
 6. [类加载与初始化](./note/java/classloading and initialization.md)
 
-####Vim
-[Vim相关文章](./note/vim/目录.md)，早期写的一些文章可以在我的旧博客：[liuzhijun.iteye.com](http://liuzhijun.iteye.com/category/270228)查看到  
-
-10. [正则表达式](./note/vim/10.md) 
-11. [Vim11](./note/vim/11.md)
-12. [Vim12---ab与map](./note/vim/12.md)
-13. [Vim13  多窗口](./note/vim/13.md)
-14. [Vim14  标签页](./note/vim/14.md)
-15. [Vim15 折叠](./note/vim/15折叠.md)
-16. [Vim16 Visual 模式（0）](./note/vim/16.md)
-17. [Vim17 Visual 模式（1）](./note/vim/17.md)
-18. [Vim18 Text-Objects](./note/vim/18.md)
-19. [Vim19 Visaul 模式（2）](./note/vim/19.md)
-20. [Vim20 Taglist初体验](./note/vim/20.md)
-21. [Vim21 又谈abbreviation](./note/vim/21.md)
-22. [Vim22 编码设置](./note/vim/22.md)
-23. [Vim23 filetype](./note/vim/23.md)
-24. [Vim24 record、play](./note/vim/24.md)
-25. [Vim25 行复制与移动](./note/vim/25.md)
-26. [Vim26 跨行执行〈Normal模式下的〉命令](./note/vim/26.md)
-27. [Vim27 高亮所有搜索模式匹配](./note/vim/27.md)
-28. [Vim28 全局命令](./note/vim/28.md)
-[我的vim配置](./note/vim/vimrc.md)  
-
 ####redis
 1. [入门篇](./note/redis/introduce.md)
 
