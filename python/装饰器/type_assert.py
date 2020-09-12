@@ -4,9 +4,44 @@ https://python3-cookbook.readthedocs.io/zh_CN/latest/c09/p07_enforcing_type_chec
 """
 from inspect import signature
 from functools import wraps
+# typeguard-2.9.1
+from typeguard import check_type
+# typing-inspect-0.6.0
+from typing_inspect import get_parameters
+from typing_inspect import get_origin
+
+import typing
 
 
 def typeassert(*ty_args, **ty_kwargs):
+    def decorate(func):
+        # If in optimized mode, disable type checking
+        if not __debug__:
+            return func
+
+        # Map function argument names to supplied types
+        sig = signature(func)
+        bound_types = sig.bind_partial(*ty_args, **ty_kwargs).arguments
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            bound_values = sig.bind(*args, **kwargs)
+            # Enforce type assertions across supplied arguments
+            for name, value in bound_values.arguments.items():
+                if name in bound_types:
+                    try:
+                        # Checking if a variable conforms to a typing object
+                        check_type('assert type', value, bound_types[name])
+                    except TypeError as e:
+                        raise e
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorate
+
+
+def typeassert_origin(*ty_args, **ty_kwargs):
     def decorate(func):
         # If in optimized mode, disable type checking
         if not __debug__:
@@ -33,12 +68,17 @@ def typeassert(*ty_args, **ty_kwargs):
     return decorate
 
 
-@typeassert(int, int)
+@typeassert(int, typing.List[int])
 def add(x, y):
-    return x + y
+    assert check_type('type', [2], typing.List[int]) is None
+    assert typing.List[str].__origin__ == list
+    assert get_origin(typing.List[str]) == list
+    assert typing.List[str].__args__[0] == str
+    # assert get_parameters(typing.List[str])[0] == str
+    return f'{x} + {y}'
 
 
-add(2, 3)
+add(2, [2, 1])
 
 
 # add(2, 'hello')
@@ -71,4 +111,4 @@ def bar(x, items=None):
 
 bar(2)
 bar(4, [1, 2, 3])
-bar(2, 3)
+# bar(2, 3)

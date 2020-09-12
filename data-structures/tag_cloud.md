@@ -1,6 +1,6 @@
 标签云算法Python实现
 ========
-标签云（Tag Cloud）常见于各种博客站点中，标签有利于网站内容分类，还可以用于相关性内容推荐。近日笔者有空把个人的开源博客[Django_blog](https://github.com/lzjun567/django_blog)添加了一个新功能--标签云。最终效果请访问：[http://foofish.net/blog/tags](http://foofish.net/blog/tags)
+标签云（Tag Cloud）常见于各种博客站点中，标签有利于网站内容分类，还可以用于相关性内容推荐
 ![tagcloud](http://7d9py7.com1.z0.glb.clouddn.com/tag-cloud.jpg)
 
 ####实现原理

@@ -1,4 +1,0 @@
-result = {
-  "type": "string",
-  "default": ""
-}

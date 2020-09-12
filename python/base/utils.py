@@ -1,6 +1,7 @@
-
 from datetime import datetime as dt
 import typing
+from dataclasses import dataclass
+
 
 def to_iso_date(date: dt.date) -> str:
     return dt.date.isoformat(date)
@@ -11,6 +12,7 @@ def ensure_text_type(val: typing.Union[str, bytes]) -> str:
         val = val.decode("utf-8")
     return str(val)
 
+
 def pluck(dictlist: typing.List[typing.Dict[str, typing.Any]], key: str):
     """Extracts a list of dictionary values from a list of dictionaries.
     ::
@@ -20,3 +22,9 @@ def pluck(dictlist: typing.List[typing.Dict[str, typing.Any]], key: str):
         [1, 2]
     """
     return [d[key] for d in dictlist]
+
+
+@dataclass  # 类生成
+class GalleryResult:
+    data: typing.Dict[str, typing.List[typing.Union[str, bytes]]] = None
+    numbers: typing.Dict[str, typing.List[int]] = None

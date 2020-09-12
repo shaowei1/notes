@@ -1,5 +1,3 @@
-
-
 # download
 http://files.omnigroup.com/software/macosx/10.13/
 

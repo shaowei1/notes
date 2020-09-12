@@ -1,1 +1,0 @@
-pycharm-shortcut.md

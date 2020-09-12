@@ -1,1 +1,0 @@
-interruptingcow==0.8

@@ -25,57 +25,69 @@ html = """
     </html>
     """
 
+
 def application(environ, start_response):
-    #response_body = "the request method was %s" % environ['REQUEST_METHOD']
-    #response_body = response_body*1000
-    #status = '200 OK'
-    #response_headers = [('Content-Type', 'text/plain'),
+    # response_body = "the request method was %s" % environ['REQUEST_METHOD']
+    # response_body = response_body*1000
+    # status = '200 OK'
+    # response_headers = [('Content-Type', 'text/plain'),
     #                    ('Content-Length', str(len(response_body)))]
 
-    #start_response(status, response_headers)
-    #return [response_body]
+    # start_response(status, response_headers)
+    # return [response_body]
     try:
         request_body_size = int(environ.get('CONTENT_LENGTH', 0))
     except:
-        request_body_size = 0 
+        request_body_size = 0
 
     request_body = environ['wsgi.input'].read(request_body_size)
     d = parse_qs(request_body)
 
     age = d.get('age', [''])[0]
-    hobbies = d.get('hobbies',[])
+    hobbies = d.get('hobbies', [])
 
     age = escape(age)
     hobbies = [escape(hobby) for hobby in hobbies]
 
-    response_body = html % (age or 'Empty',','.join(hobbies or ['No Hobbies']))
+    response_body = html % (age or 'Empty', ','.join(hobbies or ['No Hobbies']))
     status = '200 OK'
-    response_headers = [('Content-Type','text/html'),
+    response_headers = [('Content-Type', 'text/html'),
                         ('Content-Length', str(len(response_body)))]
     start_response(status, response_headers)
     return [response_body]
-
 
 
 class AppClass:
 
     def __call__(self, environ, start_reponse):
         status = "200 OK"
-        response_header = [('Content_Type','text/plain'),]
+        response_header = [('Content_Type', 'text/plain'), ]
         start_reponse(status, response_header)
         return ["hello world ok!"]
+
 
 class Upperware(object):
     def __init__(self, app):
         self.wrapped_app = app
-    def __call__(self,environ, start_response):
+
+    def __call__(self, environ, start_response):
+        """
+        object.__call__(self[, args...])
+        此方法会在实例作为一个函数被“调用”时被调用；
+        如果定义了此方法，则 x(arg1, arg2, ...) 就相当于 x.__call__(arg1, arg2, ...) 的快捷方式。
+
+        :param environ:
+        :param start_response:
+        :return:
+        """
         for data in self.wrapped_app(environ, start_response):
             return data.upper()
-        
-httpd= make_server('localhost',
+
+
+httpd = make_server('localhost',
                     8051,
                     Upperware(AppClass()),
                     )
 
-#httpd.handle_request()
-httpd.serve_forever()
+httpd.handle_request()
+# httpd.serve_forever()

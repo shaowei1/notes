@@ -1,5 +1,4 @@
 ﻿###学习笔记
-在这里记录自己的学习笔记，有些文章是半成品，部分完整文章有可能会发布在自己的[博客](http://foofish.net)里面。用GitHub记录的一个好处是版本控制，当然有时候我也用Evernote来记录。  
 
 ####Python
 5. [collections学习笔记](./note/python/collections.md)
@@ -25,8 +24,6 @@
 3. [Python/Django编程实践指南](./note/python/code_style.md)
 8. [Django Form](./note/python/django_form.md)
 9. [Django url()函数详解](./note/python/django_url.md)
-10. [Django signal](./note/python/signals.md)
-
 
 #####Mako模板
 
@@ -36,8 +33,6 @@
 14. [SQLAlchemy学习笔记](./note/python/sqlalchemy.md)
 
 ####Java
-此系列文章绝大部分发布在[importnew.com](http://www.importnew.com)网站上  
-
 1. [JDBC批处理Select语句](./note/java/JDBC Performance Tips.md)
 2. [JDBC为什么要使用PreparedStatement而不是Statement](./note/java/Why use PreparedStatement in Java JDBC .md)
 3. [Java为什么需要Lambda表达式（-）](./note/java/Why W Need Lambda Expressions in Java Part2.md)
@@ -69,10 +64,6 @@
 28. [Vim28 全局命令](./note/vim/28.md)
 [我的vim配置](./note/vim/vimrc.md)  
 
-####memcached
-1. [入门安装篇](./note/memcached/introduce_install.md)  
-2. [命令介绍篇](./note/memcached/telnet_command.md)
-
 ####redis
 1. [入门篇](./note/redis/introduce.md)
 
@@ -80,10 +71,3 @@
 1. [RQ简介](./note/rq/rq_getting_start.md)
 2. [RQ Queue](./note/rq/rq.md)
 3. [RQ Worker](./note/rq/rq_worker.md)
-
-
-####sphinx/coreseek
-1. [sphinx笔记](./note/python/sphinx/introduce.md)  
-
-不定时更新 
-
