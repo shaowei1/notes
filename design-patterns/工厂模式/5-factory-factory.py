@@ -4,6 +4,7 @@ RuleConfigParserFactoryMap 类是创建工厂对象的工厂类，
 getParserFactory() 返回的是缓存好的单例工厂对象。
 
 """
+from singleton import singleton
 
 
 class IRuleConfigParser:
@@ -63,16 +64,9 @@ class RuleConfigSource:
     def load(self, rule_config_filepath):
         rule_config_file_extension = self.__get_file_extension(
             rule_config_filepath)
-        parser_factory: IRuleConfigParserFactory = None
-        if rule_config_file_extension == "json":
-            parser_factory = JsonRuleConfigParserFactory()
-        elif rule_config_file_extension == "xml":
-            parser_factory = XmlRuleConfigParserFactory()
-        elif rule_config_file_extension == "yaml":
-            parser_factory = YamlRuleConfigParserFactory()
-        elif rule_config_file_extension == "properties":
-            parser_factory = PropertiesRuleConfigParserFactory()
-        else:
+        parser_factory: IRuleConfigParserFactory = RuleConfigParserFactoryMap.instance(
+        ).get_parser_factory(rule_config_file_extension)
+        if parser_factory is None:
             raise InvalidRuleConfigException(
                 f"Rule config file format is not supported: {rule_config_filepath}"
             )
@@ -86,3 +80,28 @@ class RuleConfigSource:
     def __get_file_extension(self, filepath):
         # ...解析文件名获取扩展名，比如rule.json，返回json
         return "json"
+
+
+# //因为工厂类只包含方法，不包含成员变量，完全可以复用，
+# //不需要每次都创建新的工厂类对象，所以，简单工厂模式的第二种实现思路更加合适。
+@singleton.Singleton
+class RuleConfigParserFactoryMap:
+    # //工厂的工厂
+    def __init__(self):
+        self.__cachedFactories = dict()
+        self.__cachedParsers["json"] = JsonRuleConfigParserFactory()
+        self.__cachedParsers["xml"] = XmlRuleConfigParserFactory()
+        self.__cachedParsers["yaml"] = YamlRuleConfigParserFactory()
+        self.__cachedParsers["properties"] = PropertiesRuleConfigParserFactory()
+
+    def get_parser_factory(self, _type: str):
+        if _type is None or _type == "":
+            return None
+        parse_factory = self.__cachedFactories.get(_type.lower())
+        return parse_factory
+
+
+if __name__ == '__main__':
+    r1 = RuleConfigParserFactoryMap.instance()
+    r2 = RuleConfigParserFactoryMap.instance()
+    assert id(r1) == id(r2)
