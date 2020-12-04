@@ -11,8 +11,6 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
-sudo docker login --username=shaowei@1376573201505901 registry.cn-hangzhou.aliyuncs.com
-shao******
 
 ## COPY and ADD
 docker client 会把所有文件发送给 docker daemon
