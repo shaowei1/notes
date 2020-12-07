@@ -18,8 +18,10 @@ class UserVerifyMiddleware:
     def __call__(self, environ, start_response):
         """
         provide a callable that provides a WSGI application interface
-        :param environ:
-        :param start_response:
+        符合WSGI标准的一个HTTP处理函数
+
+        :param environ: 一个包含所有HTTP请求信息的dict对象；
+        :param start_response: 一个发送HTTP响应的函数
         :return: an iterable response after initiating a response with start_response
         """
         request = Request(environ)
